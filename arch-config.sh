@@ -22,8 +22,8 @@ printf "\nSetting Name Servers\n"
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 
-printf "Creating an initial ramdisk environment in 10 seconds..." && sleep 10
-mkinitcpio -p linux
+#printf "Creating an initial ramdisk environment in 10 seconds..." && sleep 10
+#mkinitcpio -p linux
 
 printf "Installing Grub in 10 seconds..." && sleep 10
 pacman -S grub-bios
@@ -34,9 +34,3 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 #printf "\nSet root password!\n"
 passwd
-
-printf "Done! Rebooting in 10 seconds..." && sleep 10
-exit
-umount /mnt/boot
-umount /mnt
-reboot

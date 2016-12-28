@@ -21,9 +21,9 @@ Depending on the Hypervisor you're using (VMWare Player, Hyper-V, qemu) settings
 ## Quick Guide
 The steps listed in this section are for an insanely quick setup (e.g. you're rebuilding an existing VM or building multiple servers).
 For a detailed set of instructions and more information, please read below this section.
-1. mount -o remount,size=3G /run/archiso/cowspace
+1. mount -o remount,size=1G /run/archiso/cowspace
 2. pacman -Syy
-3. pacman -S git
+3. pacman --noconfirm -S git
 4. git clone https://github.com/Tri4ce/cs-source-server.git
 5. cd cs-source-server
 6. chmod +x *.sh
