@@ -30,8 +30,6 @@ For a detailed set of instructions and more information, please read below this 
 5. cd cs-source-server
 6. chmod +x *.sh
 7. ./arch-install.sh
-8. ./arch-config.sh
-9. 
 
 
 ## Detailed Guide

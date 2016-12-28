@@ -59,10 +59,10 @@ printf "\nGenerating fstab..."
 genfstab -p /mnt >> /mnt/etc/fstab
 printf "Complete."
 
-cp -pR ~/cs-source-server /mnt/root
+#cp -pR ~/cs-source-server /mnt/root
 
-arch-chroot /mnt ./root/cs-source-server/arch-config.sh
+#arch-chroot /mnt /root/cs-source-server/arch-config.sh
 
-umount /mnt/boot
-umount /mnt
-reboot
+#umount /mnt/boot
+#umount /mnt
+#reboot
