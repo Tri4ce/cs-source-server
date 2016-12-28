@@ -26,10 +26,10 @@ printf "Complete."
 
 
 # Arch parted doesn't have the mkfs or mkpartfs commands
-printf "\nCreating File-systems on Partitions..."
-mkfs.ext2 -qF /dev/sda2
-mkfs.ext4 -qF /dev/sda3
-printf "Complete."
+printf "\nCreating File-systems on Partitions...\n"
+mkfs.ext2 -qF /dev/sda2 > /dev/null
+mkfs.ext4 -qF /dev/sda3 > /dev/null
+printf "\nComplete."
 
 
 mount /dev/sda3 /mnt
@@ -50,9 +50,9 @@ sed '/^#\S/ s|#||' -i mirrorlist
 printf "Complete."
 
 
-printf "\nInstalling base and base-devel packages through pacstrap..."
+printf "\nInstalling base and base-devel packages through pacstrap...\n"
 pacstrap /mnt base base-devel > /dev/null
-printf "Complete."
+printf "\nComplete."
 
 
 printf "\nGenerating fstab..."
@@ -60,6 +60,44 @@ genfstab -p /mnt >> /mnt/etc/fstab
 printf "Complete."
 
 # Move the git repository to /mnt/var/tmp for access after arch-chroot jailing
-cp -p ~/cs-source-server /mnt/var/tmp
+#cp -p ~/cs-source-server /mnt/var/tmp
 
 arch-chroot /mnt
+
+printf "\nSetting Timezone to UTC\n"
+ln -s /usr/share/zoneinfo/UTC /etc/localtime
+
+printf "\nSetting Locale to en_US\n"
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+export LANG=en_US.UTF-8
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+
+printf "\nSetting time to UTC\n"
+hwclock --systohc --utc
+
+printf "\nSetting hostname\n"
+echo "knifin-bitches.jgarfield.com" > /etc/hostname
+
+printf "\nSetting Name Servers\n"
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+
+printf "Creating an initial ramdisk environment in 10 seconds..." && sleep 10
+mkinitcpio -p linux
+
+printf "Installing Grub in 10 seconds..." && sleep 10
+pacman -S grub-bios
+grub-install --target=i386-pc --no-floppy --recheck /dev/sda
+mkdir -p /boot/grub/locale
+cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+grub-mkconfig -o /boot/grub/grub.cfg
+
+#printf "\nSet root password!\n"
+passwd
+
+printf "Done! Rebooting in 10 seconds..." && sleep 10
+exit
+umount /mnt/boot
+umount /mnt
+reboot
