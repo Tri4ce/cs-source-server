@@ -13,7 +13,7 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 
 printf "\nSetting time to UTC\n"
-hwclock --systohc --utc
+hwclock --systohc
 
 printf "\nSetting hostname\n"
 echo "knifin-bitches.jgarfield.com" > /etc/hostname
@@ -26,11 +26,11 @@ echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 #mkinitcpio -p linux
 
 printf "Installing Grub in 10 seconds..." && sleep 10
-pacman -S grub-bios
+pacman --noconfirm -S grub-bios
 grub-install --target=i386-pc --no-floppy --recheck /dev/sda
 mkdir -p /boot/grub/locale
 cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 grub-mkconfig -o /boot/grub/grub.cfg
 
-#printf "\nSet root password!\n"
+printf "\nSet root password!\n"
 passwd

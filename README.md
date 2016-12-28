@@ -7,6 +7,7 @@ It is assumed that you are installing into a Virtual Machine (VM) Guest environm
 ## Virtual Machine Configuration
 Listed below are the specs and settings I confgured for a VM running inside of [Oracle VM VirtualBox](https://www.virtualbox.org/) on [Windows 10](https://www.microsoft.com/en-us/windows/).
 Depending on the Hypervisor you're using (VMWare Player, Hyper-V, qemu) settings and milage may vary.
+
 * Name: Arch Linux x64
 * Type: Linux
 * Version: Arch Linux (64-bit)
@@ -21,6 +22,7 @@ Depending on the Hypervisor you're using (VMWare Player, Hyper-V, qemu) settings
 ## Quick Guide
 The steps listed in this section are for an insanely quick setup (e.g. you're rebuilding an existing VM or building multiple servers).
 For a detailed set of instructions and more information, please read below this section.
+
 1. mount -o remount,size=1G /run/archiso/cowspace
 2. pacman -Syy
 3. pacman --noconfirm -S git
@@ -37,6 +39,7 @@ For a detailed set of instructions and more information, please read below this 
 
 
 ### Get Arch Linux Live CD running
+
 1. Download the [latest Arch Linux ISO](https://www.archlinux.org/download/)
 2. Take a quick read through the [Arch Linux Installation Guide](https://wiki.archlinux.org/index.php/installation_guide) to become familiar with what to expect during this process
 3. Add the Arch Linux ISO file as a CD-ROM drive to your Virtual Machine (or burn a physical copy to a CD/DVD or make a bootable USB stick)
@@ -59,6 +62,7 @@ In order to do this, we need to bump up the size of the partition that the _root
 
 ### Clone the repository and run the scripts
 Now that the git client is available, we can clone the repository holding the scripts.
+
 1. git clone https://github.com/Tri4ce/cs-source-server.git
 2. cd cs-source-server
 3. chmod +x *.sh
@@ -67,6 +71,7 @@ Now that the git client is available, we can clone the repository holding the sc
 
 
 ## Citations / References
+
 * mount(8) manpage - http://man7.org/linux/man-pages/man8/mount.8.html
 * SRCDS on Arch Linux - http://forums.srcds.com/viewtopic/18513
 * Arch Linux Installation Guide - https://wiki.archlinux.org/index.php/installation_guide
