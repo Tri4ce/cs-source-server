@@ -39,6 +39,6 @@ pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
 
 # Move the git repository to /mnt/var/tmp for access after arch-chroot jailing
-mv ~/cs-source-server /mnt/var/tmp
+cp -p ~/cs-source-server /mnt/var/tmp
 
 arch-chroot /mnt
