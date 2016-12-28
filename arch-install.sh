@@ -25,7 +25,6 @@ mkfs.ext4 /dev/sda3
 mount /dev/sda3 /mnt
 mkdir /mnt/boot
 mount /dev/sda2 /mnt/boot
-parted /dev/sda print
 
 # Get current list of US mirrors
 curl -o mirrorlist "https://www.archlinux.org/mirrorlist/?country=US&protocol=http&ip_version=4"
@@ -38,5 +37,8 @@ sed '/^#\S/ s|#||' -i mirrorlist
 
 pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
+
+# Move the git repository to /mnt/var/tmp for access after arch-chroot jailing
+mv ~/cs-source-server /mnt/var/tmp
 
 arch-chroot /mnt
