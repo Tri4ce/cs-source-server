@@ -29,11 +29,15 @@ parted /dev/sda print
 
 # Get current list of US mirrors
 curl -o mirrorlist https://www.archlinux.org/mirrorlist/?country=US&protocol=http&ip_version=4
+
 # Uncomment all mirrors
-sed '/^#\S/ s|#||' -i mirrorlist
+# Note: I had a bitch of a time dealing with Windows interpreting a single-quote one-way, while Arch interprets it differently.
+#       This is probably something to do with ANSI Code-page fun-times, but I honestly could care less for the purposes of this
+#       repository, so I'm just going to roll with double-quotes for this command.
+sed "/^#\S/ s|#||" -i mirrorlist
+
 # Rank mirrors and sort them accordingly
 /usr/bin/rankmirrors -n 0 mirrorlist > /etc/pacman.d/mirrorlist
-# pacstrap will copy mirrorlist to our installation
 
 pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
