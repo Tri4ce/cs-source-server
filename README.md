@@ -57,13 +57,14 @@ In order to do this, we need to bump up the size of the partition that the _root
 3. pacman -S git
     * Install the git client
 
-### Clone the repository
+### Clone the repository and run the scripts
 Now that the git client is available, we can clone the repository holding the scripts.
 1. git clone https://github.com/Tri4ce/cs-source-server.git
+2. cd cs-source-server
+3. chmod +x *.sh
+4. ./arch-install.sh
+5. ./arch-config.sh
 
-
-### Run the Installation scripts
-1. 
 
 ## Citations / References
 * mount(8) manpage - http://man7.org/linux/man-pages/man8/mount.8.html
