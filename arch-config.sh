@@ -16,7 +16,7 @@ printf "\nSetting time to UTC\n"
 hwclock --systohc
 
 printf "\nSetting hostname\n"
-echo "knifin-bitches.jgarfield.com" > /etc/hostname
+echo "clan5.jgarfield.com" > /etc/hostname
 
 printf "\nSetting Name Servers\n"
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
