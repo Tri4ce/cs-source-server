@@ -4,6 +4,7 @@
 # It has been modified to work with an 80GB disk and use the UTC timezone for universal
 # time-stamping.
 
+timedatectl set-ntp true
 
 # Create partitions for the boot loader and a / root to hold everything else.
 printf "\nCreating a new Partition Table..."
