@@ -57,7 +57,7 @@ printf "\nComplete."
 
 
 printf "\nGenerating fstab..."
-genfstab -p /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 printf "Complete."
 
 #cp -pR ~/cs-source-server /mnt/root
